@@ -1,0 +1,6 @@
+Como refatorar
+Certifique-se de que um valor seja atribuído à variável uma vez e apenas uma vez dentro do método. Caso contrário, use Dividir Variável Temporária para garantir que a variável seja usada apenas para armazenar o resultado de sua expressão.
+
+Use Extract Method para colocar a expressão de interesse em um novo método. Certifique-se de que esse método retorne apenas um valor e não altere o estado do objeto. Se o método afetar o estado visível do objeto, use Consulta separada do modificador .
+
+Substitua a variável por uma consulta ao seu novo método.
