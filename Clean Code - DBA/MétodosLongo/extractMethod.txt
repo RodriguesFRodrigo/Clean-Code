@@ -1,0 +1,10 @@
+Como refatorar
+
+Crie um novo método e nomeie-o de uma forma que torne seu propósito auto-evidente.
+
+Copie o fragmento de código relevante para seu novo método. Exclua o fragmento de seu local antigo e, em vez disso, faça uma chamada para o novo método.
+Encontre todas as variáveis ​​usadas neste fragmento de código. Se eles forem declarados dentro do fragmento e não forem usados ​​fora dele, simplesmente deixe-os inalterados — eles se tornarão variáveis ​​locais para o novo método.
+
+Se as variáveis ​​forem declaradas antes do código que você está extraindo, você precisará passar essas variáveis ​​para os parâmetros do seu novo método para usar os valores anteriormente contidos nelas. Às vezes é mais fácil se livrar dessas variáveis ​​recorrendo a Replace Temp with Query .
+
+Se você perceber que uma variável local muda de alguma forma em seu código extraído, isso pode significar que esse valor alterado será necessário posteriormente em seu método principal. Dupla verificação! E se for esse o caso, retorne o valor dessa variável para o método main para manter tudo funcionando.
