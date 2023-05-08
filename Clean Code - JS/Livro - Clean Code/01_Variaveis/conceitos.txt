@@ -1,0 +1,24 @@
+# Nomenclatura Consistente
+
+A nomenclatura consistente significa que cada tipo de variável deve ter um nome que reflita sua finalidade e significado.
+Por exemplo, as variáveis ​​que armazenam valores booleanos devem ser nomeadas com um prefixo que indique que são valores
+booleanos, como "is_", "has_", "can_", etc.
+Por outro lado, as variáveis ​​que armazenam valores numéricos podem ser nomeadas de forma mais descritiva,
+como "idade","quantidade", "preço", etc.
+
+Por outro lado, as variáveis ​​que armazenam valores numéricos podem ser nomeadas de forma mais descritiva,
+como "idade", "quantidade", "preço", etc.
+
+# Contexto desnecessários
+
+Não adicione contextos desnecessários
+Se o nome de sua classe/objeto já lhe diz alguma coisa, não as repita nos nomes de suas variáveis.
+
+# Argumentos padrões
+
+Use argumentos padrões ao invés de curto circuitar ou
+usar condicionais
+Esteja ciente que se você usá-los, sua função apenas irá
+fornecer valores padrões para argumentos undefined . Outros valores
+"falsos" como '' , "" , false , null , 0 , e NaN , não serão
+substituídos por valores padrões.

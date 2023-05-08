@@ -1,0 +1,5 @@
+logger -> Mostra informações. 
+Exemplo: myLogger(err);
+
+cancellabe -> Indica se um elemento é cancelável. 
+Exemplo: const cancellabe = true;
