@@ -1,0 +1,88 @@
+# Argumentos de funções (idealmente 2 ou menos)
+
+Limitar a quantidade de parâmetros de uma função é incrivelmente
+importante porque torna mais fácil testá-la. Ter mais que três leva a
+uma explosão combinatória onde você tem que testar muitos casos
+diferentes com cada argumento separadamente.
+
+Geralmente, se você tem mais que dois argumentos então sua função
+está tentando fazer muitas coisas.
+
+Já que JavaScript lhe permite criar objetos instantaneamente, sem ter
+que escrever muita coisa, você pode usar um objeto se você se pegar
+precisando usar muitos argumentos.
+
+# Funções devem fazer uma coisa
+
+Essa é de longe a regra mais importante em engenharia de software.
+Quando funções fazem mais que uma coisa, elas se tornam difíceis de
+serem compostas, testadas e raciocinadas. Quando você pode isolar
+uma função para realizar apenas uma ação, elas podem ser
+refatoradas facilmente e seu código ficará muito mais limpo. 
+
+# Funções devem ter apenas um nível de abstração
+
+Quando você tem mais de um nível de abstração sua função
+provavelmente esta fazendo coisas demais. Dividir suas funções leva
+a reutilização e testes mais fáceis.
+
+# Remova código duplicado
+
+Faça absolutamente seu melhor para evitar código duplicado. Código
+duplicado quer dizer que existe mais de um lugar onde você deverá
+alterar algo se precisar mudar alguma lógica.
+
+# Não use flags como parâmetros de funções
+
+Flags falam para o seu usuário que sua função faz mais de uma coisa.
+Funções devem fazer apenas uma coisa. Divida suas funções se elas
+estão seguindo caminhos de código diferentes baseadas em um valor
+boleano.
+
+# Evite Efeitos Colaterais I
+
+Uma função produz um efeito colateral se ela faz alguma coisa que
+não seja receber um valor de entrada e retornar outro(s) valor(es).
+Um efeito colateral pode ser escrever em um arquivo, modicar uma
+variável global, ou acidentalmente transferir todo seu dinheiro para
+um estranho.
+
+Em programação, o termo "efeito colateral" refere-se a uma alteração
+ou modificação indesejada que ocorre além do resultado principal 
+esperado de uma função ou rotina. Essas alterações podem afetar o 
+estado do sistema, variáveis globais, interações com outros componentes
+ou qualquer outro comportamento não intencional que possa surgir 
+durante a execução de um programa.
+
+Agora, você precisa de efeitos colaterais ocasionalmente no seu
+programa. Como no exemplo anterior, você pode precisar escrever
+em um arquivo. O que você quer fazer é centralizar aonde está
+fazendo isto. Não tenha diversas funções e classes que escrevam para
+uma arquivo em particular. Tenha um serviço que faça isso. Um e
+apenas um.
+
+# Evite Efeitos Colaterais II
+
+Em JavaScript, tipos primitivos são passados por valor e
+objetos/vetores são passados por referência. No caso de objetos e
+vetores, se sua função faz uma mudança em um vetor de um carrinho
+de compras, por exemplo, adicionando um item para ser comprado,
+então qualquer outra função que use o vetor cart também será
+afetada por essa adição. Isso pode ser ótimo, mas também pode ser
+ruim.
+
+O usuário clica no botão “Comprar”, botão que invoca a função
+purchase que dispara uma série de requisições e manda o vetor
+cart para o servidor. Devido a uma conexão ruim de internet, a
+função purchase precisa fazer novamente a requisição. Agora,
+imagine que nesse meio tempo o usuário acidentalmente clique no
+botão Adicionar ao carrinho em um produto que ele não queria
+antes da requisição começar. Se isto acontecer e a requisição for
+enviada novamente, então a função purchase irá enviar
+acidentalmente o vetor com o novo produto adicionado porque existe
+uma referência para o vetor cart que a função addItemToCart
+modicou adicionando um produto indesejado.
+Uma ótima solução seria que a função addCartToItem sempre
+clonasse o vetor cart , editasse-o, e então retornasse seu clone. Isso
+garante que nenhuma outra função que possua uma referência para o
+carrinho de compras seja afetada por qualquer mudança feita.

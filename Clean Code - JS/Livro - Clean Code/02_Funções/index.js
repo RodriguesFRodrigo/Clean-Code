@@ -67,10 +67,12 @@ function createInputFromBody(self, body) {
   let obj = {};
   let params = body.match(/@@((\w+)\b)@@/gi); // Funcionalidade 1: Obter params
 
-  if (params !== null) { // Funcionalidade 2: verificar se existem params
+  if (params !== null) {
+    // Funcionalidade 2: verificar se existem params
     params = params.map((param) => param.replaceAll("@@", "")); // Funcionalidade 3: Retirar @@
     obj = Object.fromEntries(
-      params.map((param) => [ // Funcionalidade 4: Construir inputs
+      params.map((param) => [
+        // Funcionalidade 4: Construir inputs
         param,
         {
           classes: ["col-span-12"],
@@ -86,14 +88,13 @@ function createInputFromBody(self, body) {
     );
   }
 
-  obj["date"] = {
+  (obj["date"] = {
     classes: ["col - span - 6"],
     type: "date - picker",
     label: "Data Limite",
     value: dayjs().format("YYYY - MM - DD"),
-  },
-
-    obj["sendEmail"] = {
+  }),
+    (obj["sendEmail"] = {
       classes: ["col-span-6"],
       type: "radios",
       label: "Enviar e-mail com notificação",
@@ -103,12 +104,11 @@ function createInputFromBody(self, body) {
         { name: "Não", value: 0 },
       ],
       identifiers: ["name", "value"],
-    },
-
-    self.fields = {
+    }),
+    (self.fields = {
       ...self.fields,
       ...obj,
-    };
+    });
 
   return self;
 }
@@ -169,3 +169,161 @@ function createInputFromBody(self, body) {
 
   return self;
 }
+
+// ----- Remover Código Duplicado ----- //
+
+// Função 1
+// Ruim
+function calcularAreaRetangulo(largura, altura) {
+  const area = largura * altura; // Código duplicado
+  console.log(`A área do retângulo é ${area}`);
+}
+
+function calcularPerimetroRetangulo(largura, altura) {
+  const perimetro = 2 * (largura + altura); // Código duplicado
+  console.log(`O perímetro do retângulo é ${perimetro}`);
+}
+
+// Bom
+function calcularArea(largura, altura) {
+  // Alterações são realizadas dentro da função calcularArea
+  return largura * altura;
+}
+
+function calcularAreaRetangulo(largura, altura) {
+  const area = calcularArea(largura, altura);
+  console.log(`A área do retângulo é ${area}`);
+}
+
+function calcularPerimetroRetangulo(largura, altura) {
+  const perimetro = 2 * calcularArea(largura, altura);
+  console.log(`O perímetro do retângulo é ${perimetro}`);
+}
+
+// Função 2
+// Ruim
+function showDeveloperList(developers) {
+  developers.forEach((developer) => {
+    // Código duplicado inicio
+    const expectedSalary = developer.calculateExpectedSalary();
+    const experience = developer.getExperience();
+    const githubLink = developer.getGithubLink();
+    const data = {
+      expectedSalary,
+      experience,
+      githubLink,
+    };
+    render(data);
+    // Código duplicado fim
+  });
+}
+
+function showManagerList(managers) {
+  managers.forEach((manager) => {
+    // Código duplicado inicio
+    const expectedSalary = manager.calculateExpectedSalary();
+    const experience = manager.getExperience();
+    const portfolio = manager.getMBAProjects();
+    const data = {
+      expectedSalary,
+      experience,
+      portfolio,
+    };
+    render(data);
+    // Código duplicado fim
+  });
+}
+
+function showEmployeeList(employees) {
+  employees.forEach((employee) => {
+    const expectedSalary = employee.calculateExpectedSalary();
+    const experience = employee.getExperience();
+    const data = {
+      expectedSalary,
+      experience,
+    };
+    switch (employee.type) {
+      case "manager":
+        data.portfolio = employee.getMBAProjects();
+        break;
+      case "developer":
+        data.githubLink = employee.getGithubLink();
+        break;
+    }
+    render(data);
+  });
+}
+
+// ----- Defina (set) objetos padrões com Object.assign ----- //
+
+// Bom
+const initialObject = {
+  type: "input",
+  classes: ["gap-4"],
+  value: null,
+};
+
+const beforeObject = {
+  value: 141,
+  disabled: true,
+  error: null,
+};
+
+const finalObject = Object.assign(initialObject, beforeObject);
+// {type: 'input', classes: Array(1), value: 141, disabled: true, error: null}
+
+// ----- Não use flags como parâmetros de funções ----- //
+
+// Ruim
+function createFile(name, temp) {
+  if (temp) {
+    // Flag que cria bifurcação
+    fs.create(`./temp/${name}`); // Funcionalidade 1: criar arquivo no dir ./temp
+  } else {
+    fs.create(name); // Funcionalidade 2: criar arquivo
+  }
+}
+
+// Bom
+function createTmpFile(name) {
+  fs.create(`./temp/${name}`);
+}
+
+function createFile() {
+  fs.create(name);
+}
+
+// ----- Evite efeitos colaterais I ----- //
+
+// Ruim
+let fullName = "Ryan McDermott"; // String
+
+// Variável global referenciada pela função seguinte
+// Se tivéssemos outra função que usa esse nome, então seria
+// um vetor (array) e poderia quebrar seu código
+function splitIntoFirstAndLastName() {
+  fullName = fullName.split(" "); // fullName virou array
+}
+splitIntoFirstAndLastName();
+console.log(toUppercase(fullName)); // Quebra o código, pois fullName não é mais String.
+
+// Bom
+function splitIntoFirstAndLastName(name) {
+  return name.split(" ");
+}
+
+const fullName = "Ryan McDermott";
+const newFullName = splitIntoFirstAndLastName(name);
+console.log(toUppercase(fullName)); // Não quebra o código
+console.log(newFullName); // ['Ryan', 'McDermott'];
+
+// ----- Evite efeitos colaterais II ----- //
+
+// Ruim
+const addItemToCart = (cart, item) => {
+  cart.push({ item, date: Date.now() }); // Modifica o array cart
+};
+
+const addItemToCart = (cart, item) => {
+  return [...cart, { item, date: Date.now() }]; // Clona / Retorna um array com outra ref
+};
