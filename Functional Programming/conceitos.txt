@@ -1,0 +1,27 @@
+----- Princípios de funções puras: -----
+
+Evite modificar os parâmetros de entrada: As funções puras não devem modificar os valores de seus parâmetros de entrada. Em vez disso, eles devem trabalhar com cópias ou criar novos objetos, se necessário.
+
+Retornar um valor: as funções puras devem sempre retornar um valor com base em seus parâmetros de entrada e não modificar quaisquer variáveis ​​ou objetos externos.
+
+Evite usar o estado externo: as funções puras não devem depender ou modificar nenhum estado externo fora de seu escopo. Isso inclui variáveis ​​globais, chamadas de banco de dados, solicitações de rede ou qualquer outra forma de interação externa.
+
+Use estruturas de dados imutáveis: as estruturas de dados imutáveis ​​garantem que a função não modifique acidentalmente os dados que recebe. Bibliotecas como Immutable.js ou ferramentas como Object.freeze() podem ajudar a criar estruturas de dados imutáveis.
+
+Evite geração de números aleatórios: funções puras não devem gerar números aleatórios ou usar timestamps, pois podem produzir resultados diferentes para as mesmas entradas.
+
+Separe lógica pura e impura: divida seu código em funções puras, que lidam com a computação com base em entradas e funções impuras, que lidam com efeitos colaterais como operações de E/S, solicitações de rede ou manipulação de DOM. Isso permite isolar as partes puras e testá-las independentemente.
+
+Teste de pureza: para garantir que uma função seja pura, escreva testes de unidade abrangentes que cubram todos os cenários de entrada possíveis e verifique a saída esperada.
+
+----- Quando usar estruturas imutáveis? -----
+
+Evitar efeitos colaterais indesejados: A mutabilidade pode levar a efeitos colaterais inesperados, pois os objetos podem ser alterados em qualquer lugar do código. Isso torna o rastreamento de bugs mais difícil e pode levar a comportamentos inesperados. Estruturas imutáveis garantem que os objetos não sejam alterados acidentalmente, o que ajuda a evitar efeitos colaterais indesejados.
+
+Facilitar o rastreamento de alterações: Com estruturas imutáveis, quando você precisa fazer uma alteração em um objeto, em vez de modificá-lo diretamente, você cria uma nova instância com as alterações desejadas. Isso facilita o rastreamento de todas as alterações, pois cada objeto é independente e não há efeitos colaterais em outras partes do código.
+
+Suporte a programação funcional: A imutabilidade é um conceito fundamental na programação funcional, que enfatiza a criação de funções puras e evita efeitos colaterais. Estruturas imutáveis são mais adequadas para a programação funcional, pois permitem que você trabalhe com valores constantes e crie funções mais previsíveis e com menos dependências.
+
+Melhor desempenho em certos casos: Embora a criação de novas instâncias possa parecer ineficiente, em algumas situações, as estruturas imutáveis podem ser otimizadas para melhor desempenho. Por exemplo, algoritmos de comparação podem ser simplificados, pois você pode comparar referências de objetos em vez de comparar recursivamente todas as propriedades.
+
+Suporte a recursos de viagem no tempo (time-travel): Estruturas imutáveis são usadas em implementações de recursos de viagem no tempo, onde você pode reverter o estado do aplicativo para um ponto anterior. Como os objetos imutáveis não mudam, você pode facilmente restaurar um estado anterior sem copiar todo o estado atual.

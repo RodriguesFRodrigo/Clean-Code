@@ -327,3 +327,54 @@ const addItemToCart = (cart, item) => {
 const addItemToCart = (cart, item) => {
   return [...cart, { item, date: Date.now() }]; // Clona / Retorna um array com outra ref
 };
+
+// ----- Favoreça programação funcional sobre programação imperativa ----- //
+// São mais limpas e faceis de testar
+
+// Ruim
+const programmerOutput = [
+  {
+    name: 'Uncle Bobby',
+    linesOfCode: 500
+  },
+  {
+    name: 'Suzie Q',
+    linesOfCode: 1500
+  },
+  {
+    name: 'Jimmy Gosling',
+    linesOfCode: 150
+  },
+  {
+    name: 'Gracie Hopper',
+    linesOfCode: 1000
+  }
+];
+let totalOutput = 0;
+for (let i = 0; i < programmerOutput.length; i++) {
+  totalOutput += programmerOutput[i].linesOfCode;
+}
+
+// Bom
+const INITIAL_VALUE = 0;
+const totalOutput = programmerOutput
+  .map((programmer) => programmer.linesOfCode)
+  .reduce((acc, linesOfCode) => acc + linesOfCode,
+    INITIAL_VALUE)
+
+// ----- Encapsule condicionais ----- //
+
+// Ruim
+if ((v_treinamento.numero_de_voucher === null && v_treinamento.numero_de_voucher_inscritos === null)
+  && (v_treinamento.numero_de_voucher = v_treinamento.numero_de_voucher_inscritos)) {
+  // ...
+}
+
+// Bom
+function registrationNotAllowed(numero_de_voucher, numero_de_voucher_inscritos) {
+  return (numero_de_voucher === null && numero_de_voucher_inscritos === null)
+    && (numero_de_voucher = numero_de_voucher_inscritos)
+}
+if (registrationNotAllowed(v_treinamento.numero_de_voucher, v_treinamento.numero_de_voucher_inscritos)) {
+  // ...
+}
