@@ -1,0 +1,35 @@
+# Funções de alta ordem pré definidas na linguagem JS
+
+map(): Aplica uma função a cada elemento de um array e retorna um novo array com os resultados.
+
+filter(): Cria um novo array com todos os elementos que passam por um teste (função de filtragem) especificado.
+
+reduce(): Executa uma função redutora em cada elemento de um array, resultando em um único valor de retorno.
+
+forEach(): Executa uma função em cada elemento de um array, mas não retorna um novo array.
+
+sort(): Ordena os elementos de um array com base em uma função de comparação.
+
+find(): Retorna o primeiro elemento de um array que satisfaz uma condição especificada em uma função de teste.
+
+some(): Verifica se pelo menos um elemento de um array satisfaz uma condição especificada em uma função de teste.
+
+every(): Verifica se todos os elementos de um array satisfazem uma condição especificada em uma função de teste.
+
+reduceRight(): Executa uma função redutora em cada elemento de um array (da direita para a esquerda), resultando em um único valor de retorno.
+
+findIndex(): Retorna o índice do primeiro elemento em um array que satisfaz uma condição especificada em uma função de teste.
+
+flatMap(): Aplica uma função a cada elemento de um array e retorna um novo array, enquanto o resultado é achatado em um único nível.
+
+flat(): Retorna um novo array com todos os elementos de um ou mais arrays concatenados em um único nível.
+
+slice(): Retorna uma cópia superficial (shallow copy) de uma parte de um array em um novo array, selecionada com base em índices.
+
+splice(): Altera o conteúdo de um array, adicionando ou removendo elementos.
+
+concat(): Combina dois ou mais arrays e retorna um novo array resultante da concatenação.
+
+includes(): Verifica se um array contém um determinado elemento e retorna true ou false.
+
+indexOf(): Retorna o primeiro índice em que um determinado elemento pode ser encontrado em um array, ou -1 se o elemento não estiver presente.

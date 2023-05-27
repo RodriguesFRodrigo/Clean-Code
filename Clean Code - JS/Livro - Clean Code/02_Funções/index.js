@@ -378,3 +378,62 @@ function registrationNotAllowed(numero_de_voucher, numero_de_voucher_inscritos) 
 if (registrationNotAllowed(v_treinamento.numero_de_voucher, v_treinamento.numero_de_voucher_inscritos)) {
   // ...
 }
+
+// ----- Evite negações condicionais ----- //
+
+// Ruim
+function isDOMNodeNotPresent(node) {
+  // ...
+}
+
+// Difícil de ler e entender
+if (!isDOMNodeNotPresent(node)) {
+  // ...
+}
+
+// Bom
+function isDOMNodePresent(node) {
+  // ...
+}
+if (isDOMNodePresent(node)) {
+  // ...
+}
+
+// ----- Evite condicionais ----- //
+
+// 1. Use operadores ternarios
+
+// Ruim
+if (condicao) {
+  return valorVerdadeiro;
+} else {
+  return valorFalso;
+}
+
+// Bom
+const valor = (condicao) ? valorVerdadeiro : valorFalso;
+
+// 2 Utilizar o padrão de objeto de estratégia
+const estrategias = {
+  'opcao1': function () {
+    console.log("opção1");
+  },
+  'opcao2': function () {
+    console.log("opção2");
+  },
+}
+
+const opcao = (condicao) ? 'opcao1' : 'opcao2';
+estrategias[opcao]();
+
+// 3. Utilize funções de alta ordem
+// As funções de ordem superior são aquelas que podem receber uma função como argumento ou retornar uma função.
+const acao1 = () => { };
+const acao2 = () => { };
+
+const acao = condicao ? acao1 : acao2;
+array.forEach(acao); // Função de alta ordem
+
+// ----- Evite checagem de tipos ----- //
+
+// ----- Remova código morto ----- //
